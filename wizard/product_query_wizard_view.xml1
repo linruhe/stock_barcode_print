@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_product_query_wizard" model="ir.ui.view">
+            <field name="name">Product query wizard</field>
+            <field name="model">product.query.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Choose your date">
+                    <p class="oe_gray" attrs="{'invisible': [('choose_date', '=', False)]}">
+                        Choose the date for which you want to get the stock valuation of your products.
+
+                        This will filter the stock operation that weren't done at the selected date, to retreive the quantity
+                        you had, and gives you the inventory value according to the standard price used at that time.
+                    </p>
+                    <p class="oe_gray" attrs="{'invisible': [('choose_date', '=', False)]}">
+                        Retrieve the stock valuation of your products at current day
+                    </p>
+                    <group>
+                    <field name="choose_attribute" string="请选择产品的属性"/>
+                        <field name="attribute_value_4" string="厚度/克重" domain="[('attribute_id', '=', 19)]" attrs="{'invisible': [('choose_attribute', '=', False)]}"/> 
+                        <field name="attribute_value_6" string="色号" domain="[('attribute_id', '=', 9)]" attrs="{'invisible': [('choose_attribute', '=', False)]}"/>
+                        <field name="attribute_value_3" string="网型" domain="[('attribute_id', '=', 8)]" attrs="{'invisible': [('choose_attribute', '=', False)]}"/>
+                        <field name="attribute_value_1" string="工艺" domain="[('attribute_id', '=', 16)]" attrs="{'invisible': [('choose_attribute', '=', False)]}"/>
+                        <field name="attribute_value_2" string="属性" domain="[('attribute_id', '=', 20)]" attrs="{'invisible': [('choose_attribute', '=', False)]}"/>
+                        <field name="attribute_value_5" string="压纹" domain="[('attribute_id', '=', 12)]" attrs="{'invisible': [('choose_attribute', '=', False)]}"/>
+                    </group>
+                    <group>                                                                                             
+                    <field name="choose_date" invisible="True"/>
+                        <field name="date" attrs="{'invisible': [('choose_date', '=', False)]}"/>
+                    </group>
+                    <footer>
+                        <button name="open_table" string="查询" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="取消" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_product_query_wizard" model="ir.actions.act_window">
+            <field name="name">产品查询向导</field>
+            <field name="res_model">product.query.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_product_query_wizard"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_action_product_query_wizard" string="产品查询向导" action="action_product_query_wizard" parent="stock.menu_stock_product" sequence="15"/>
+    </data>
+</openerp>
+

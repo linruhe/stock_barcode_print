@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="action_stock_barcode_report" model="stock.picking" report_type="qweb-pdf" name="stock_barcode_report.stock_barcode_report" string="Stock barcode report" file="stock_barcode_report.stock_barcode_report"/>
+   
+    </data>
+</openerp>
+
